@@ -4,6 +4,10 @@ spring:
     username: credits
     password: credits
 
+  sql:
+    init:
+      mode: always
+
   jpa:
     hibernate:
       ddl-auto: validate
