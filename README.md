@@ -119,13 +119,13 @@ api/creditos/credito/{numeroCredito}
 
 A API retorna erros padronizados:
 
-{
-  "timestamp": "2025-12-16T17:39:21",
-  "status": 404,
-  "error": "Not Found",
-  "message": "Crédito não encontrado para o número: 000000",
-  "path": "/api/creditos/credito/000000"
-}
+    {
+      "timestamp": "2025-12-16T17:39:21",
+      "status": 404,
+      "error": "Not Found",
+      "message": "Crédito não encontrado para o número: 000000",
+      "path": "/api/creditos/credito/000000"
+    }
 
 🧪 Testes
 
@@ -143,27 +143,27 @@ Executar os testes:
 
 Subir o banco de dados:
 
-docker-compose up -d
+    docker-compose up -d
 
 Rodar a aplicação:
 
-./mvnw spring-boot:run
+    ./mvnw spring-boot:run
 
 A API estará disponível em:
 
-http://localhost:8080
+    http://localhost:8080
 
 🗃️ Banco de Dados
 
 Scripts utilizados:
 
-schema.sql — criação da tabela
+    schema.sql — criação da tabela
 
-data.sql — carga inicial de dados
+    data.sql — carga inicial de dados
 
 O Hibernate está configurado com:
 
-spring.jpa.hibernate.ddl-auto=validate
+    spring.jpa.hibernate.ddl-auto=validate
 
 🔁 Controle de Versão
 
