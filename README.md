@@ -4,7 +4,7 @@ API RESTful desenvolvida em **Spring Boot** para consulta de créditos constitu�
 
 ---
 
-1. 🧾 Funcionalidades
+🧾 Funcionalidades
 
 - 🔍 Consultar créditos por **número da NFS-e**
 - 🔎 Consultar crédito por **número do crédito**
@@ -14,9 +14,9 @@ API RESTful desenvolvida em **Spring Boot** para consulta de créditos constitu�
 
 ---
 
-2. 🛠️ Tecnologias Utilizadas
+🛠️ Tecnologias Utilizadas
 
-2.1 Back-end
+Back-end
 - Java 17
 - Spring Boot 3
 - Spring Web
@@ -24,10 +24,10 @@ API RESTful desenvolvida em **Spring Boot** para consulta de créditos constitu�
 - Hibernate
 - Lombok
 
-2.2 Banco de Dados
+Banco de Dados
 - PostgreSQL
 
-2.3 Testes
+Testes
 - JUnit 5
 - Mockito
 - Spring Boot Test
@@ -39,7 +39,7 @@ API RESTful desenvolvida em **Spring Boot** para consulta de créditos constitu�
 
 ---
 
-3. 📐 Arquitetura
+📐 Arquitetura
 
 O projeto segue uma separação clara de responsabilidades:
 
@@ -54,6 +54,15 @@ O projeto segue uma separação clara de responsabilidades:
 ├── exception
 │ └── GlobalExceptionHandler
 
+- **Controller**: camada de entrada HTTP
+- **Service**: regras de negócio
+- **Repository**: acesso a dados
+- **DTO + Mapper**: isolamento da entidade de domínio
+- **Exception Handler**: tratamento global de erros
+
+---
+
+🔹 Buscar créditos por número da NFS-e
 
 - **Controller**: camada de entrada HTTP
 - **Service**: regras de negócio
@@ -63,25 +72,13 @@ O projeto segue uma separação clara de responsabilidades:
 
 ---
 
-4. 🔹 Buscar créditos por número da NFS-e
+📡 Endpoints
 
-
-- **Controller**: camada de entrada HTTP
-- **Service**: regras de negócio
-- **Repository**: acesso a dados
-- **DTO + Mapper**: isolamento da entidade de domínio
-- **Exception Handler**: tratamento global de erros
-
----
-
-4.1 📡 Endpoints
-
-4.2 🔹 Buscar créditos por número da NFS-e
+🔹 Buscar créditos por número da NFS-e
 
 ```http
 GET /api/creditos/{numeroNfse}
 
-[
   {
     "numeroCredito": "123456",
     "numeroNfse": "7891011",
@@ -94,7 +91,6 @@ GET /api/creditos/{numeroNfse}
     "valorDeducao": 5000.00,
     "baseCalculo": 25000.00
   }
-]
 
 GET /api/creditos/credito/{numeroCredito}
 
@@ -111,7 +107,7 @@ GET /api/creditos/credito/{numeroCredito}
   "baseCalculo": 25000.00
 }
 ```
-4.3 ❌ Tratamento de Erros
+❌ Tratamento de Erros
 
 A API retorna erros padronizados:
 
@@ -135,21 +131,21 @@ Executar os testes:
 
 ./mvnw test
 
-5. 🐳 Executando o Projeto
+🐳 Executando o Projeto
 
-5.1 Subir o banco de dados:
+Subir o banco de dados:
 
 docker-compose up -d
 
-5.2 Rodar a aplicação:
+Rodar a aplicação:
 
 ./mvnw spring-boot:run
 
-5.3 A API estará disponível em:
+A API estará disponível em:
 
 http://localhost:8080
 
-6. Banco de Dados
+🗃️ Banco de Dados
 
 Scripts utilizados:
 
@@ -163,7 +159,7 @@ spring.jpa.hibernate.ddl-auto=validate
 
 🔁 Controle de Versão
 
-7. O projeto utiliza Git Flow simplificado, com:
+O projeto utiliza Git Flow simplificado, com:
 
 main
 
