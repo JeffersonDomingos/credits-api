@@ -1,4 +1,4 @@
-CREATE TABLE credito
+CREATE TABLE IF NOT EXISTS credito
 (
     id                BIGSERIAL PRIMARY KEY,
     numero_credito    VARCHAR(50)    NOT NULL,
