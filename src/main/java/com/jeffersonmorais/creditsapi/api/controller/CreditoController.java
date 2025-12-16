@@ -1,4 +1,4 @@
-package com.jeffersonmorais.creditsapi.controller;
+package com.jeffersonmorais.creditsapi.api.controller;
 
 import com.jeffersonmorais.creditsapi.domain.entity.Credito;
 import com.jeffersonmorais.creditsapi.domain.service.CreditoService;
