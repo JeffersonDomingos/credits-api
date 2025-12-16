@@ -43,6 +43,9 @@ Testes
 
 O projeto segue uma separação clara de responsabilidades:
 
+```text
+src/main/java/com/jeffersonmorais/creditsapi
+
 ├── api
 │ ├── controller
 │ ├── dto
@@ -53,8 +56,8 @@ O projeto segue uma separação clara de responsabilidades:
 │ └── service
 ├── exception
 │ └── GlobalExceptionHandler
-
-- **Controller**: camada de entrada HTTP
+```
+**Controller**: camada de entrada HTTP
 - **Service**: regras de negócio
 - **Repository**: acesso a dados
 - **DTO + Mapper**: isolamento da entidade de domínio
@@ -91,8 +94,12 @@ GET /api/creditos/{numeroNfse}
     "valorDeducao": 5000.00,
     "baseCalculo": 25000.00
   }
+  ```
 
-GET /api/creditos/credito/{numeroCredito}
+
+
+```http
+api/creditos/credito/{numeroCredito}
 
 {
   "numeroCredito": "123456",
@@ -107,6 +114,7 @@ GET /api/creditos/credito/{numeroCredito}
   "baseCalculo": 25000.00
 }
 ```
+
 ❌ Tratamento de Erros
 
 A API retorna erros padronizados:
