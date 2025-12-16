@@ -2,6 +2,8 @@ package com.jeffersonmorais.creditsapi.domain.service;
 
 import com.jeffersonmorais.creditsapi.domain.entity.Credito;
 import com.jeffersonmorais.creditsapi.domain.repository.CreditoRepository;
+import com.jeffersonmorais.creditsapi.exception.CreditNotFoundException;
+import com.jeffersonmorais.creditsapi.exception.NfesNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,18 @@ public class CreditoService {
     private CreditoRepository creditoRepository;
 
     public List<Credito> findByNumeroNfse(String numeroNfse) {
-        return creditoRepository.findByNumeroNfse(numeroNfse);
+        List<Credito> nfes = creditoRepository.findByNumeroNfse(numeroNfse);
+
+        if (nfes.isEmpty()) {
+            throw new NfesNotFoundException(numeroNfse);
+        }
+
+        return nfes;
+
     }
 
     public Credito findByNumeroCredito(String numeroCredito) {
-        return creditoRepository.findByNumeroCredito(numeroCredito).orElseThrow(() -> new RuntimeException("Crédito não encontrado"));
+        return creditoRepository.findByNumeroCredito(numeroCredito).orElseThrow(() -> new CreditNotFoundException(numeroCredito));
     }
 
 }
