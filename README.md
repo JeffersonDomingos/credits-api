@@ -33,7 +33,7 @@ Testes
 - Spring Boot Test
 - MockMvc
 
-2.4 Infraestrutura
+Infraestrutura
 - Docker
 - Docker Compose
 
