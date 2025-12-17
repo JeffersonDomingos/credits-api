@@ -88,12 +88,10 @@ Exemplo do payload publicado:
   "timestamp": "2025-12-17T00:03:35.608814"
 }
 
-
 📡 Endpoints
 
 🔹 Buscar créditos por número da NFS-e
 
-```http
 GET /api/creditos/{numeroNfse}
 
   {
