@@ -36,6 +36,8 @@ Testes
 Infraestrutura
 - Docker
 - Docker Compose
+- Zookeeper
+- Kafka
 
 ---
 
@@ -63,7 +65,29 @@ src/main/java/com/jeffersonmorais/creditsapi
 - **DTO + Mapper**: isolamento da entidade de domínio
 - **Exception Handler**: tratamento global de erros
 
----
+📨 Mensageria (Kafka)
+
+Como desafio extra, a aplicação implementa **mensageria assíncrona utilizando Apache Kafka**.
+
+Sempre que uma consulta de crédito é realizada, um **evento é publicado** no tópico Kafka `credit-events`, simulando um cenário real de auditoria, rastreamento ou integração com outros sistemas.
+
+🔔 Evento Publicado
+
+O evento representa uma consulta realizada na API e contém:
+
+- Tipo da consulta (`NFSE` ou `Credito`)
+- Valor consultado
+- Data e hora da consulta
+
+Exemplo do payload publicado:
+
+```json
+{
+  "tipoConsulta": "Credito",
+  "valorConsultado": "123456",
+  "timestamp": "2025-12-17T00:03:35.608814"
+}
+
 
 📡 Endpoints
 
@@ -131,9 +155,24 @@ Executar os testes:
 
 🐳 Executando o Projeto
 
-Subir o banco de dados:
+Subir os containers banco de dados e do kafka:
 
     docker-compose up -d
+
+Criar o tópico Kafka:
+
+    docker exec -it credits-kafka kafka-topics \
+      --create \
+      --topic credit-events \
+      --bootstrap-server localhost:9092 \
+      --partitions 1 \
+      --replication-factor 1
+
+Listar tópicos existentes:
+
+    docker exec -it credits-kafka kafka-topics \
+      --list \
+      --bootstrap-server localhost:9092
 
 Rodar a aplicação:
 
@@ -142,6 +181,14 @@ Rodar a aplicação:
 A API estará disponível em:
 
     http://localhost:8080
+
+📡 Testando a mensageria
+
+Após subir a aplicação e realizar uma requisição de consulta de crédito, o evento será automaticamente publicado no Kafka.
+
+O consumo pode ser observado nos logs da aplicação, por exemplo:
+
+**Evento Recebido -> Tipo: NFSE | Valor: 7891011 | Data: 2025-12-17T00:19:37.692540**
 
 🗃️ Banco de Dados
 
@@ -176,8 +223,6 @@ test:
 docs:
 
 🚀 Melhorias Futuras
-
-Integração com Kafka para publicação de eventos de consulta
 
 Front-end em Angular
 
