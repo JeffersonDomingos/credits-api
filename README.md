@@ -108,11 +108,10 @@ GET /api/creditos/{numeroNfse}
     "valorDeducao": 5000.00,
     "baseCalculo": 25000.00
   }
-  ```
+  
 
 🔹 Buscar créditos por número do crédito
 
-```http
 api/creditos/credito/{numeroCredito}
 
 {
