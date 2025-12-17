@@ -4,6 +4,7 @@ import com.jeffersonmorais.creditsapi.domain.entity.Credito;
 import com.jeffersonmorais.creditsapi.domain.repository.CreditoRepository;
 import com.jeffersonmorais.creditsapi.exception.CreditNotFoundException;
 import com.jeffersonmorais.creditsapi.exception.NfesNotFoundException;
+import com.jeffersonmorais.creditsapi.infrastructure.CreditEventProducer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +24,9 @@ class CreditoServiceTest {
 
     @Mock
     private CreditoRepository creditoRepository;
+
+    @Mock
+    private CreditEventProducer creditEventProducer;
 
     @InjectMocks
     private CreditoService creditoService;
@@ -58,6 +62,7 @@ class CreditoServiceTest {
         assertEquals(1, result.size());
 
         verify(creditoRepository).findByNumeroNfse(numeroNfse);
+        verify(creditEventProducer, times(1)).publish(any());
     }
 
     @Test
@@ -74,6 +79,8 @@ class CreditoServiceTest {
         );
 
         verify(creditoRepository).findByNumeroNfse(numeroNfse);
+        verify(creditEventProducer, never()).publish(any());
+
     }
 
     @Test
@@ -93,6 +100,7 @@ class CreditoServiceTest {
         assertEquals(numeroCredito, result.getNumeroCredito());
 
         verify(creditoRepository).findByNumeroCredito(numeroCredito);
+        verify(creditEventProducer, times(1)).publish(any());
     }
 
     @Test
@@ -109,6 +117,8 @@ class CreditoServiceTest {
         );
 
         verify(creditoRepository).findByNumeroCredito(numeroCredito);
+        verify(creditEventProducer, never()).publish(any());
+
     }
 }
 
