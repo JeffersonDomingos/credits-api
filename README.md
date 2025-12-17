@@ -65,16 +65,6 @@ src/main/java/com/jeffersonmorais/creditsapi
 
 ---
 
-🔹 Buscar créditos por número da NFS-e
-
-- **Controller**: camada de entrada HTTP
-- **Service**: regras de negócio
-- **Repository**: acesso a dados
-- **DTO + Mapper**: isolamento da entidade de domínio
-- **Exception Handler**: tratamento global de erros
-
----
-
 📡 Endpoints
 
 🔹 Buscar créditos por número da NFS-e
@@ -96,7 +86,7 @@ GET /api/creditos/{numeroNfse}
   }
   ```
 
-
+🔹 Buscar créditos por número do crédito
 
 ```http
 api/creditos/credito/{numeroCredito}
